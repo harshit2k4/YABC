@@ -1,3 +1,3 @@
-# yabc
+# YABC: Yet Another BMI Calculator
 
-A new Flutter project.
+BMI Calculator built using Flutter with a simple and easy to use interface
