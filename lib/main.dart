@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:yabc/ui/home_page.dart';
 import 'package:yabc/utils/themes.dart';
 
@@ -11,7 +12,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: "YABC",
       theme: lightTheme, // default theme
       darkTheme: darkTheme,
