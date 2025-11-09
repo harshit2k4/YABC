@@ -11,10 +11,42 @@ class HomePage extends StatelessWidget {
     // init theme controller
     ThemeController themeController = Get.put(ThemeController());
 
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(children: [ThemeSwitcherBtn()]),
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              ThemeSwitcherBtn(),
+              Row(
+                children: [
+                  Text(
+                    "Namaste!",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      "YABC: Yet Another BMI Calculator",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onBackground,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
+        ),
       ),
     );
   }

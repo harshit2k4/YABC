@@ -13,7 +13,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "YABC",
+      title: "YABC: Yet Another BMI Calculator",
       theme: lightTheme, // default theme
       darkTheme: darkTheme,
       home: HomePage(),
