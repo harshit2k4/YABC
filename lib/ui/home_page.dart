@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yabc/controllers/theme_controller.dart';
+import 'package:yabc/widgets/primary_button.dart';
 import 'package:yabc/widgets/theme_switcher_btn.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,7 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               ThemeSwitcherBtn(),
@@ -44,6 +45,16 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20),
+              // Sex selector button
+              const Row(
+                children: [
+                  // Male
+                  PrimaryButton(icon: Icons.male, buttonTitle: "MALE"),
+                  SizedBox(width: 16),
+                  // Female
+                  PrimaryButton(icon: Icons.female, buttonTitle: "FEMALE"),
+                ],
+              ),
             ],
           ),
         ),
