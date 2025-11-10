@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   # GetX
   get: ^4.6.6
+  # slider widget
+  syncfusion_flutter_sliders: ^31.2.5
 
 dev_dependencies:
   flutter_test:
