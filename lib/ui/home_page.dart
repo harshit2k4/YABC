@@ -46,13 +46,21 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               // Sex selector button
-              const Row(
+              Row(
                 children: [
                   // Male
-                  PrimaryButton(icon: Icons.male, buttonTitle: "MALE"),
+                  PrimaryButton(
+                    icon: Icons.male,
+                    buttonTitle: "MALE",
+                    onPress: () {},
+                  ),
                   SizedBox(width: 16),
                   // Female
-                  PrimaryButton(icon: Icons.female, buttonTitle: "FEMALE"),
+                  PrimaryButton(
+                    icon: Icons.female,
+                    buttonTitle: "FEMALE",
+                    onPress: () {},
+                  ),
                 ],
               ),
             ],
