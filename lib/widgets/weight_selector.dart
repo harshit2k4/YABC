@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yabc/widgets/secondary_button.dart';
 
 class WeightSelector extends StatelessWidget {
   const WeightSelector({super.key});
@@ -25,6 +26,30 @@ class WeightSelector extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          // show current selected weight
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "45",
+                style: TextStyle(
+                  fontSize: 60,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                ),
+              ),
+            ],
+          ),
+          // increase button
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SecondaryButton(onPress: () {}, icon: Icons.add),
+                SecondaryButton(onPress: () {}, icon: Icons.remove),
+              ],
+            ),
           ),
         ],
       ),
