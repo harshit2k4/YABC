@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yabc/controllers/theme_controller.dart';
+import 'package:yabc/widgets/age_selector.dart';
+import 'package:yabc/widgets/height_selector.dart';
 import 'package:yabc/widgets/primary_button.dart';
 import 'package:yabc/widgets/theme_switcher_btn.dart';
+import 'package:yabc/widgets/weight_selector.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -62,6 +65,37 @@ class HomePage extends StatelessWidget {
                     onPress: () {},
                   ),
                 ],
+              ),
+              SizedBox(height: 20),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Height selector
+                    HeightSelector(),
+                    SizedBox(width: 16),
+                    // Weight and age selector
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          WeightSelector(),
+                          SizedBox(height: 10),
+                          AgeSelector(),
+                        ],
+                      ),
+                    ), // some
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                height: 50,
+                child: PrimaryButton(
+                  icon: Icons.done,
+                  buttonTitle: "LET'S GO!",
+                  onPress: () {},
+                ),
               ),
             ],
           ),
