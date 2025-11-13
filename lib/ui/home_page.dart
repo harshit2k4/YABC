@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yabc/controllers/gender_contoller.dart';
 import 'package:yabc/controllers/theme_controller.dart';
 import 'package:yabc/widgets/age_selector.dart';
 import 'package:yabc/widgets/height_selector.dart';
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // init theme controller
     ThemeController themeController = Get.put(ThemeController());
+    GenderContoller genderContoller = Get.put(GenderContoller());
 
     return Scaffold(
       body: SafeArea(
@@ -55,14 +57,20 @@ class HomePage extends StatelessWidget {
                   PrimaryButton(
                     icon: Icons.male,
                     buttonTitle: "MALE",
-                    onPress: () {},
+                    onPress: () {
+                      // assign gender to male in handler
+                      genderContoller.handleGenderChange("MALE");
+                    },
                   ),
                   SizedBox(width: 16),
                   // Female
                   PrimaryButton(
                     icon: Icons.female,
                     buttonTitle: "FEMALE",
-                    onPress: () {},
+                    onPress: () {
+                      // assign gender to female in handler
+                      genderContoller.handleGenderChange("FEMALE");
+                    },
                   ),
                 ],
               ),
