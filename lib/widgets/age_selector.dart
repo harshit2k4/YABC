@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:yabc/controllers/age_weight_controller.dart';
 import 'package:yabc/widgets/secondary_button.dart';
 
 class AgeSelector extends StatelessWidget {
@@ -6,6 +8,8 @@ class AgeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AgeWeightController ageWeightController = Get.put(AgeWeightController());
+
     return Container(
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -19,7 +23,7 @@ class AgeSelector extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Age",
+                "AGE",
                 style: TextStyle(
                   fontSize: 18,
                   color: Theme.of(context).colorScheme.onSecondaryContainer,
@@ -31,12 +35,14 @@ class AgeSelector extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "20",
-                style: TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+              Obx(
+                () => Text(
+                  "${ageWeightController.age.value}",
+                  style: TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
                 ),
               ),
             ],
@@ -46,8 +52,22 @@ class AgeSelector extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SecondaryButton(onPress: () {}, icon: Icons.add),
-                SecondaryButton(onPress: () {}, icon: Icons.remove),
+                SecondaryButton(
+                  onPress: () {
+                    // increase age value
+                    ageWeightController.age.value++;
+                  },
+                  icon: Icons.add,
+                ),
+                SecondaryButton(
+                  onPress: () {
+                    // decrease age value but don't go below 0
+                    if (!(ageWeightController.age.value <= 0)) {
+                      ageWeightController.age.value--;
+                    }
+                  },
+                  icon: Icons.remove,
+                ),
               ],
             ),
           ),

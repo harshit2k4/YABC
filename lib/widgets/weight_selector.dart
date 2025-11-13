@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:yabc/controllers/age_weight_controller.dart';
 import 'package:yabc/widgets/secondary_button.dart';
 
 class WeightSelector extends StatelessWidget {
@@ -6,6 +8,8 @@ class WeightSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AgeWeightController ageWeightController = Get.put(AgeWeightController());
+
     return Container(
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -31,12 +35,14 @@ class WeightSelector extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "45",
-                style: TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+              Obx(
+                () => Text(
+                  "${ageWeightController.weight.value}",
+                  style: TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
                 ),
               ),
             ],
@@ -46,8 +52,22 @@ class WeightSelector extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SecondaryButton(onPress: () {}, icon: Icons.add),
-                SecondaryButton(onPress: () {}, icon: Icons.remove),
+                SecondaryButton(
+                  onPress: () {
+                    // increase weight value
+                    ageWeightController.weight.value++;
+                  },
+                  icon: Icons.add,
+                ),
+                SecondaryButton(
+                  onPress: () {
+                    // decrease weight value but don't go below 0
+                    if (!(ageWeightController.weight.value <= 0)) {
+                      ageWeightController.weight.value--;
+                    }
+                  },
+                  icon: Icons.remove,
+                ),
               ],
             ),
           ),
