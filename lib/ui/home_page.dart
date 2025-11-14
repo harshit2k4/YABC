@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yabc/controllers/gender_contoller.dart';
 import 'package:yabc/controllers/theme_controller.dart';
+import 'package:yabc/widgets/action_button.dart';
 import 'package:yabc/widgets/age_selector.dart';
 import 'package:yabc/widgets/height_selector.dart';
 import 'package:yabc/widgets/primary_button.dart';
@@ -97,13 +98,10 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              SizedBox(
-                height: 50,
-                child: PrimaryButton(
-                  icon: Icons.done,
-                  buttonTitle: "LET'S GO!",
-                  onPress: () {},
-                ),
+              ActionButton(
+                onPress: () {},
+                buttonTitle: "ANALYZE",
+                icon: Icons.done_all,
               ),
             ],
           ),
