@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
+import 'package:yabc/controllers/bmi_controller.dart';
 import 'package:yabc/widgets/action_button.dart';
 
 class AnalysisPage extends StatelessWidget {
@@ -9,6 +10,8 @@ class AnalysisPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BMIController bmiController = Get.put(BMIController());
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(25),
@@ -46,32 +49,34 @@ class AnalysisPage extends StatelessWidget {
               Expanded(
                 child: SizedBox(
                   height: 350,
-                  child: CircularPercentIndicator(
-                    animationDuration: 1000,
-                    footer: Text(
-                      "Normal",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+                  child: Obx(
+                    () => CircularPercentIndicator(
+                      animationDuration: 1000,
+                      footer: Text(
+                        bmiController.bmiStatus.value,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    radius: 100,
-                    lineWidth: 30.0,
-                    percent: 0.20,
-                    center: Text(
-                      "20.7",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontSize: 25,
+                      radius: 100,
+                      lineWidth: 30.0,
+                      percent: bmiController.bmiVal.value / 100,
+                      center: Text(
+                        bmiController.bmi.value,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 25,
+                        ),
                       ),
+                      animation: true,
+                      circularStrokeCap: CircularStrokeCap.round,
+                      progressColor: Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(
+                        context,
+                      ).colorScheme.primary.withOpacity(0.2),
                     ),
-                    animation: true,
-                    circularStrokeCap: CircularStrokeCap.round,
-                    progressColor: Theme.of(context).colorScheme.primary,
-                    backgroundColor: Theme.of(
-                      context,
-                    ).colorScheme.primary.withOpacity(0.2),
                   ),
                 ),
               ),
