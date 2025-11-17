@@ -4,9 +4,9 @@ import 'package:yabc/utils/colors.dart';
 var lightTheme = ThemeData(
   useMaterial3: true,
   colorScheme: const ColorScheme.light(
-    background: lBgColor,
+    surface: lBgColor,
     primary: lPrimaryColor,
-    onBackground: lFontColor,
+    onSurface: lFontColor,
     primaryContainer: lDivColor,
     onPrimaryContainer: lFontColor,
     onSecondaryContainer: lLabelColor,
@@ -16,9 +16,9 @@ var lightTheme = ThemeData(
 var darkTheme = ThemeData(
   useMaterial3: true,
   colorScheme: const ColorScheme.dark(
-    background: dBgColor,
+    surface: dBgColor,
     primary: dPrimaryColor,
-    onBackground: dFontColor,
+    onSurface: dFontColor,
     primaryContainer: dDivColor,
     onPrimaryContainer: dFontColor,
     onSecondaryContainer: dLabelColor,
