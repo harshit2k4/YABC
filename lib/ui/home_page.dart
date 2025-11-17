@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yabc/controllers/bmi_controller.dart';
 import 'package:yabc/controllers/gender_contoller.dart';
 import 'package:yabc/controllers/theme_controller.dart';
+import 'package:yabc/ui/analysis_page.dart';
 import 'package:yabc/widgets/action_button.dart';
 import 'package:yabc/widgets/age_selector.dart';
 import 'package:yabc/widgets/height_selector.dart';
@@ -17,6 +19,7 @@ class HomePage extends StatelessWidget {
     // init theme controller
     ThemeController themeController = Get.put(ThemeController());
     GenderContoller genderContoller = Get.put(GenderContoller());
+    BMIController bmiController = Get.put(BMIController());
 
     return Scaffold(
       body: SafeArea(
@@ -99,7 +102,10 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ActionButton(
-                onPress: () {},
+                onPress: () {
+                  bmiController.calculateBMI();
+                  Get.to(() => AnalysisPage());
+                },
                 buttonTitle: "ANALYZE",
                 icon: Icons.done_all,
               ),
