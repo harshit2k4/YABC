@@ -33,12 +33,15 @@ class AnalysisPage extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: Text(
-                      "Your body analysis",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
-                        color: Theme.of(context).colorScheme.primary,
+                    child: Obx(
+                      () => Text(
+                        "Your body analysis",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28,
+                          // color: Theme.of(context).colorScheme.primary,
+                          color: bmiController.colorStatus.value,
+                        ),
                       ),
                     ),
                   ),
@@ -55,7 +58,8 @@ class AnalysisPage extends StatelessWidget {
                       footer: Text(
                         bmiController.bmiStatus.value,
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                          // color: Theme.of(context).colorScheme.primary,
+                          color: bmiController.colorStatus.value,
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
@@ -66,16 +70,20 @@ class AnalysisPage extends StatelessWidget {
                       center: Text(
                         bmiController.bmi.value,
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                          // color: Theme.of(context).colorScheme.primary,
+                          color: bmiController.colorStatus.value,
                           fontSize: 25,
                         ),
                       ),
                       animation: true,
                       circularStrokeCap: CircularStrokeCap.round,
-                      progressColor: Theme.of(context).colorScheme.primary,
-                      backgroundColor: Theme.of(
-                        context,
-                      ).colorScheme.primary.withOpacity(0.2),
+                      // progressColor: Theme.of(context).colorScheme.primary,
+                      progressColor: bmiController.colorStatus.value,
+                      // backgroundColor: Theme.of(
+                      //   context,
+                      // ).colorScheme.primary.withOpacity(0.2),
+                      backgroundColor: bmiController.colorStatus.value
+                          .withOpacity(0.2),
                     ),
                   ),
                 ),
