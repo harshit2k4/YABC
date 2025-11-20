@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
 import 'package:yabc/controllers/bmi_controller.dart';
 import 'package:yabc/widgets/action_button.dart';
