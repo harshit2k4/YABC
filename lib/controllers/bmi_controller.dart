@@ -32,26 +32,30 @@ class BMIController extends GetxController {
   }
 
   void checkStatus() {
-    if (bmiVal.value < 18.50) {
+    if (bmiVal.value < 18.5) {
       bmiStatus.value = "Underweight";
-      // change color
-      colorStatus.value = Color(0xFFFFB800);
-    }
-    if (bmiVal.value > 18.50 && bmiVal.value < 24.90) {
+      // Dark Orange (High contrast on light and dark backgrounds)
+      colorStatus.value = const Color(0xFFEF6C00);
+    } else if (bmiVal.value >= 18.5 && bmiVal.value <= 24.9) {
       bmiStatus.value = "Normal";
-      colorStatus.value = Color(0xFF00CA39);
-    }
-    if (bmiVal.value > 25.00 && bmiVal.value < 29.90) {
+      // Bright Green
+      colorStatus.value = const Color(0xFF00CA39);
+    } else if (bmiVal.value >= 25.0 && bmiVal.value <= 29.9) {
       bmiStatus.value = "Overweight";
-      colorStatus.value = Color(0xFFFF5858);
-    }
-    if (bmiVal.value > 30.00 && bmiVal.value < 34.90) {
+      // Orange Peel (Distinct from Dark Orange and better contrast)
+      colorStatus.value = const Color(0xFFF9A825);
+    } else if (bmiVal.value >= 30.0 && bmiVal.value <= 34.9) {
       bmiStatus.value = "Obese";
-      colorStatus.value = Color(0xFFFF0000);
-    }
-    if (bmiVal.value > 35.00) {
+      // Darker Red (Stronger contrast on light background)
+      colorStatus.value = const Color(0xFFD32F2F);
+    } else if (bmiVal.value >= 35.0) {
       bmiStatus.value = "Extreme Obese";
-      colorStatus.value = Color(0xFF000000);
+      // Deep Pink/Magenta (Highly visible on the Dark Theme's dark background)
+      colorStatus.value = const Color(0xFFE91E63);
+    } else {
+      // Fallback for cases where bmiVal might be 0 or negative before calculation
+      bmiStatus.value = "Invalid Input";
+      colorStatus.value = const Color(0xFF246AFE); // Default primary blue
     }
   }
 }
