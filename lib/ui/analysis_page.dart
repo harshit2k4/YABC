@@ -8,6 +8,10 @@ import 'package:yabc/widgets/action_button.dart';
 class AnalysisPage extends StatelessWidget {
   const AnalysisPage({super.key});
 
+  // Define the maximum BMI for scaling the percentage indicator
+  // Any BMI value above this (e.g., 40.0) will result in 100% full indicator.
+  final double maxBmiScale = 40.0;
+
   @override
   Widget build(BuildContext context) {
     BMIController bmiController = Get.put(BMIController());
@@ -66,7 +70,11 @@ class AnalysisPage extends StatelessWidget {
                       ),
                       radius: 100,
                       lineWidth: 30.0,
-                      percent: bmiController.bmiVal.value / 100,
+                      // percent: bmiController.bmiVal.value / 100,
+                      percent: (bmiController.bmiVal.value / maxBmiScale).clamp(
+                        0.0,
+                        1.0,
+                      ),
                       center: Text(
                         bmiController.bmi.value,
                         style: TextStyle(
