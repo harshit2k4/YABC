@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
 import 'package:yabc/controllers/bmi_controller.dart';
+import 'package:yabc/ui/about_page.dart';
 import 'package:yabc/widgets/action_button.dart';
 
 class AnalysisPage extends StatelessWidget {
@@ -101,9 +102,10 @@ class AnalysisPage extends StatelessWidget {
               SizedBox(height: 20),
               ActionButton(
                 onPress: () {
-                  // Show disclaimer page
+                  // Go to about & disclaimer page
+                  Get.to(() => AboutPage());
                 },
-                buttonTitle: "Disclaimer",
+                buttonTitle: "About & Disclaimer",
                 icon: Icons.info_outline_rounded,
               ),
             ],
