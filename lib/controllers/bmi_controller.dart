@@ -22,12 +22,18 @@ class BMIController extends GetxController {
     // convert height from centimeter to meter
     var heightInMeters = heightController.height.value / 100;
 
-    // calculate BMI till 2 decimal places
-    bmiVal.value =
-        ageWeightController.weight.value / (heightInMeters * heightInMeters);
-    bmi.value = bmiVal.toStringAsFixed(2);
-    // convert back to double
-    bmiVal.value = double.parse(bmi.value);
+    // Check for valid input before calculating
+    if (heightInMeters <= 0 || ageWeightController.weight.value <= 0) {
+      bmiVal.value = 0.0;
+      bmi.value = "0.00";
+    } else {
+      // calculate BMI till 2 decimal places
+      bmiVal.value =
+          ageWeightController.weight.value / (heightInMeters * heightInMeters);
+      bmi.value = bmiVal.toStringAsFixed(2);
+      // convert back to double (optional, as bmiVal is already a double)
+      bmiVal.value = double.parse(bmi.value);
+    }
     checkStatus();
   }
 
