@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:yabc/controllers/age_weight_controller.dart';
 import 'package:yabc/controllers/gender_contoller.dart';
 import 'package:yabc/controllers/height_controller.dart';
+import 'package:yabc/data/bmi_content.dart';
 
 class BMIController extends GetxController {
   // init values;
@@ -63,5 +64,27 @@ class BMIController extends GetxController {
       bmiStatus.value = "Invalid Input";
       colorStatus.value = const Color(0xFF246AFE); // Default primary blue
     }
+  }
+
+  /// Fetches the summary line (Line 2) based on the current BMI status.
+  String getSummaryLine() {
+    final status = bmiStatus.value;
+
+    // Retrieve the summary from the map.
+    final contentMap = bmiAnalysisContent[status];
+
+    // Use null-aware operator (??) to provide a safe default message
+    // if the status key is not found (e.g., "Invalid Input").
+    return contentMap?["summary"] ??
+        "Please check your input data to get a full body analysis.";
+  }
+
+  /// Fetches the motivational quote (Line 3) based on the current BMI status.
+  String getQuote() {
+    final status = bmiStatus.value;
+    final contentMap = bmiAnalysisContent[status];
+
+    return contentMap?["quote"] ??
+        "“Health is a state of body, a state of mind, a state of life.”";
   }
 }

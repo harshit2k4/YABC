@@ -120,7 +120,7 @@ class AnalysisPage extends StatelessWidget {
                 ),
               ),
 
-              // Placeholder text container
+              // BMI Information Text
               SizedBox(height: mediumGap),
               Container(
                 height: textContainerHeight,
@@ -130,9 +130,56 @@ class AnalysisPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: SingleChildScrollView(
-                  child: Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat, dolor tempor consequat iaculis, urna dolor tempor tellus, sit amet vestibulum orci velit non ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Vivamus venenatis felis vel nisi maximus tincidunt. In ut sem ultrices, aliquam lorem egestas, vestibulum neque. Suspendisse non imperdiet elit. Phasellus eget semper dui, vitae volutpat ex. Duis malesuada ante vel est semper semper. Aenean eget aliquet mi, non sollicitudin nunc."
-                    "Nulla in augue lectus. Donec in auctor sapien. Aliquam erat volutpat. Morbi lorem libero, consectetur convallis metus sit amet, auctor dapibus odio. Nulla fringilla tempor quam eget posuere. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst. Aliquam et nulla gravida, scelerisque est vel, lobortis libero. Suspendisse sodales euismod lectus, non posuere felis facilisis at. Praesent et diam felis. Suspendisse tempus ac quam non lacinia. Nulla posuere felis at faucibus egestas. Curabitur cursus lacus eu nulla posuere condimentum. Vivamus id erat eros.",
+                  child: Obx(
+                    () => Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: bmiController
+                                .getSummaryLine(), // Calls the new helper
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
+                            ),
+                          ),
+                          const TextSpan(text: '\n\n'), // More spacing
+                          TextSpan(
+                            text:
+                                '• Height: ${bmiController.heightController.height.value.toStringAsFixed(2)} cm\n'
+                                '• Weight: ${bmiController.ageWeightController.weight.value.toStringAsFixed(0)} kg\n'
+                                '• Age: ${bmiController.ageWeightController.age.value}\n'
+                                '• Gender: ${bmiController.genderContoller.rxGender.value}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
+                          const TextSpan(text: '\n\n'),
+                          TextSpan(
+                            text: bmiController
+                                .getQuote(), // Calls the new helper
+                            style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontSize: 14,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurface.withOpacity(0.7),
+                            ),
+                          ),
+                        ],
+                      ),
+                      // Base style for the entire TextSpan
+                      style: DefaultTextStyle.of(context).style.copyWith(
+                        fontSize: 14,
+                        height: 1.6,
+                        color: Theme.of(context).colorScheme.onSurface,
+                        decoration: TextDecoration.none,
+                      ),
+                    ),
                   ),
                 ),
               ),
