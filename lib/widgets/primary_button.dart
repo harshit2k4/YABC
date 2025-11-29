@@ -18,19 +18,28 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     GenderContoller genderContoller = Get.put(GenderContoller());
 
+    // Responsive Values
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
+    final buttonHeight = (height * 0.065).clamp(40.0, 55.0);
+    final iconSize = (width * 0.06).clamp(18.0, 28.0);
+    final fontSize = (width * 0.045).clamp(14.0, 20.0);
+    final horizontalPadding = (width * 0.025).clamp(6.0, 16.0);
+    final spacing = (width * 0.02).clamp(6.0, 14.0);
+
     return Expanded(
-      // Button takes entire available width
       child: InkWell(
         onTap: onPress,
-        // keep the button stateful, to allow state change
-        child: Obx(
-          () => Container(
-            height: 50,
-            padding: EdgeInsets.all(10),
+        child: Obx(() {
+          final bool isActive = genderContoller.rxGender.value == buttonTitle;
+
+          return Container(
+            height: buttonHeight,
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              // assign the color based on the active button
-              color: genderContoller.rxGender.value == buttonTitle
+              color: isActive
                   ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.primaryContainer,
             ),
@@ -39,26 +48,30 @@ class PrimaryButton extends StatelessWidget {
               children: [
                 Icon(
                   icon,
-                  color: genderContoller.rxGender.value == buttonTitle
+                  size: iconSize,
+                  color: isActive
                       ? Theme.of(context).colorScheme.primaryContainer
                       : Theme.of(context).colorScheme.primary,
                 ),
-                SizedBox(width: 10),
-                Text(
-                  buttonTitle,
-                  style: TextStyle(
-                    fontSize: 18,
-                    letterSpacing: 1.5,
-                    fontWeight: FontWeight.bold,
-                    color: genderContoller.rxGender.value == buttonTitle
-                        ? Theme.of(context).colorScheme.primaryContainer
-                        : Theme.of(context).colorScheme.primary,
+                SizedBox(width: spacing),
+                Flexible(
+                  child: Text(
+                    buttonTitle,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: fontSize,
+                      letterSpacing: 1.5,
+                      fontWeight: FontWeight.bold,
+                      color: isActive
+                          ? Theme.of(context).colorScheme.primaryContainer
+                          : Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ),
               ],
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }
