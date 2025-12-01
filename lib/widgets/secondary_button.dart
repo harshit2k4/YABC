@@ -7,10 +7,14 @@ class SecondaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Responsive sizes
+    final width = MediaQuery.of(context).size.width;
+    final padding = (width * 0.025).clamp(6.0, 14.0);
+
     return InkWell(
       onTap: onPress,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(padding),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(10),
@@ -18,7 +22,7 @@ class SecondaryButton extends StatelessWidget {
         child: Icon(
           icon,
           color: Theme.of(context).colorScheme.primaryContainer,
-          size: 20,
+          size: 22,
         ),
       ),
     );
