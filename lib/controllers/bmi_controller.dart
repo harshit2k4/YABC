@@ -39,6 +39,12 @@ class BMIController extends GetxController {
   }
 
   void checkStatus() {
+    // Handle invalid input first (Priority)
+    if (bmiVal.value <= 0) {
+      bmiStatus.value = "Invalid Input";
+      colorStatus.value = const Color(0xFF246AFE); // Default primary blue
+      return; // Exit early so it doesn't hit the Underweight check
+    }
     if (bmiVal.value < 18.5) {
       bmiStatus.value = "Underweight";
       // Dark Orange (High contrast on light and dark backgrounds)
@@ -59,10 +65,6 @@ class BMIController extends GetxController {
       bmiStatus.value = "Extreme Obese";
       // Deep Pink/Magenta (Highly visible on the Dark Theme's dark background)
       colorStatus.value = const Color(0xFFE91E63);
-    } else {
-      // Fallback for cases where bmiVal might be 0 or negative before calculation
-      bmiStatus.value = "Invalid Input";
-      colorStatus.value = const Color(0xFF246AFE); // Default primary blue
     }
   }
 
